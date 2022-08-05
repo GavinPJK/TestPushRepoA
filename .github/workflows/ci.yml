@@ -24,7 +24,8 @@ jobs:
         env:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
-          source-directory: output/
+          source-directory: output-repo-a/
+          target-directory: output-repo-a/
           destination-github-username: 'GavinPJK'
           destination-repository-name: 'TestPushRepoEndpoint'
           user-email: kirwangp@tcd.ie
