@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
 on:
@@ -14,6 +12,10 @@ jobs:
     container: pandoc/latex
     steps:
       - uses: actions/checkout@v2
+      - name: Make temp directory
+        run: |
+          cp mkdocs.yml TestPushRepoA-docs/mkdocs.yml
+          ls TestPushRepoA-docs/
       - name: Pushes to another repository
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@ssh-deploy-key
@@ -21,7 +23,7 @@ jobs:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
           source-directory: TestPushRepoA-docs/
-          target-directory: TestPushRepoA-docs//
+          target-directory: TestPushRepoA-docs/
           destination-github-username: 'GavinPJK'
           destination-repository-name: 'TestPushRepoEndpoint'
           user-email: kirwangp@tcd.ie
